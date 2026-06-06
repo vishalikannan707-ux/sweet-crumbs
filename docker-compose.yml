@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: sweet-crumbs-db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: sweet-crumbs
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - bakery-network
+
+  backend:
+    build: ./backend
+    container_name: sweet-crumbs-backend
+    ports:
+      - "5000:5000"
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/sweet-crumbs
+      JWT_SECRET: your_jwt_secret_key
+      JWT_EXPIRE: 7d
+      NODE_ENV: development
+      FRONTEND_URL: http://localhost:3000
+    depends_on:
+      - mongodb
+    networks:
+      - bakery-network
+    volumes:
+      - ./backend/src:/app/src
+
+  frontend:
+    build: ./frontend
+    container_name: sweet-crumbs-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000/api
+    depends_on:
+      - backend
+    networks:
+      - bakery-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  bakery-network:
+    driver: bridge

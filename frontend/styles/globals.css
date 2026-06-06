@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-cream text-text;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Common layout */
+  .section {
+    @apply max-w-[1100px] mx-auto px-8 py-16;
+  }
+  .sec-head {
+    @apply text-center mb-10;
+  }
+  .sec-tag {
+    @apply inline-block text-accent text-xs font-semibold tracking-[1.5px] uppercase mb-2;
+  }
+  .sec-head h2 {
+    @apply text-[40px] font-bold text-brown;
+  }
+  .divider {
+    @apply w-12 h-[3px] bg-gradient-to-r from-accent to-gold rounded-sm mx-auto mt-3;
+  }
+
+  /* Buttons */
+  .btn-hero-primary {
+    @apply bg-accent text-white border-none px-7 py-3.5 rounded-full text-sm font-semibold cursor-pointer transition-all duration-200 tracking-[0.3px] hover:bg-[#e8994d] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(200,133,74,0.4)];
+  }
+  .btn-hero-secondary {
+    @apply bg-white/10 text-white border border-white/35 px-7 py-3.5 rounded-full text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-white/20;
+  }
+
+  /* Product Card */
+  .prod-card {
+    @apply bg-white border border-border rounded-[18px] overflow-hidden transition-all duration-200 cursor-default hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(44,26,14,0.13)];
+  }
+  .prod-img-wrap {
+    @apply h-[170px] overflow-hidden relative bg-warm;
+  }
+  .prod-img-wrap img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  .prod-card:hover .prod-img-wrap img {
+    @apply scale-105;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: theme('colors.cream');
+}
+::-webkit-scrollbar-thumb {
+  background: theme('colors.border');
+  border-radius: 3px;
+}
+
+/* Base resets mapped from HTML */
+input, select, textarea, button {
+  @apply font-sans;
+}
