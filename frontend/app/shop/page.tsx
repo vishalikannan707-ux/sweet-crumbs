@@ -93,7 +93,7 @@ export default function ShopPage() {
                   </div>
                   <div className="text-gold text-xs mb-1.5">
                     {'★'.repeat(Math.floor(product.rating))}
-                    <span className="text-muted text-[11px] ml-1">({product.reviews || 120})</span>
+                    <span className="text-muted text-[11px] ml-1">(120)</span>
                   </div>
                   <div className="text-xs text-muted leading-[1.55] mb-3 min-h-[36px]">
                     {product.description}

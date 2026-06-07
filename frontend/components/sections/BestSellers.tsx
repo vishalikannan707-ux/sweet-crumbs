@@ -36,7 +36,7 @@ export default function BestSellers() {
               </div>
               <div className="text-gold text-xs mb-1.5">
                 {'★'.repeat(Math.floor(product.rating))}
-                <span className="text-muted text-[11px] ml-1">({product.reviews || 120})</span>
+                <span className="text-muted text-[11px] ml-1">(120)</span>
               </div>
               <div className="text-xs text-muted leading-[1.55] mb-3 min-h-[36px]">
                 {product.description}
@@ -44,11 +44,6 @@ export default function BestSellers() {
               <div className="flex items-center justify-between">
                 <div className="font-display text-[22px] font-bold text-brown">
                   ₹{product.price}
-                  {product.oldPrice && (
-                    <small className="text-[13px] font-sans text-muted line-through ml-1">
-                      ₹{product.oldPrice}
-                    </small>
-                  )}
                 </div>
                 <button className="bg-brown text-white border-none w-[34px] h-[34px] rounded-full text-[20px] flex items-center justify-center cursor-pointer transition-all duration-200 font-light hover:bg-accent hover:scale-110">
                   +
