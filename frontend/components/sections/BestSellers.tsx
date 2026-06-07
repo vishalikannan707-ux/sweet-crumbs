@@ -14,15 +14,15 @@ export default function BestSellers() {
         <h2>Our Best Sellers</h2>
         <div className="divider"></div>
       </div>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {bestSellers.map((product) => (
           <div key={product.id} className="prod-card">
             <div className="prod-img-wrap">
-              <Image 
-                src={product.image} 
-                alt={product.name} 
-                fill 
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               />
@@ -36,7 +36,7 @@ export default function BestSellers() {
               </div>
               <div className="text-gold text-xs mb-1.5">
                 {'★'.repeat(Math.floor(product.rating))}
-                <span className="text-muted text-[11px] ml-1">({product.reviews || 120})</span>
+                <span className="text-muted text-[11px] ml-1">(120)</span>
               </div>
               <div className="text-xs text-muted leading-[1.55] mb-3 min-h-[36px]">
                 {product.description}
@@ -44,9 +44,9 @@ export default function BestSellers() {
               <div className="flex items-center justify-between">
                 <div className="font-display text-[22px] font-bold text-brown">
                   ₹{product.price}
-                  {product.oldPrice && (
+                  {product.price && (
                     <small className="text-[13px] font-sans text-muted line-through ml-1">
-                      ₹{product.oldPrice}
+                      ₹{product.price}
                     </small>
                   )}
                 </div>
@@ -58,7 +58,7 @@ export default function BestSellers() {
           </div>
         ))}
       </div>
-      
+
       <div className="text-center mt-10">
         <Link href="/shop" className="btn-hero-primary inline-block">
           View All Products →

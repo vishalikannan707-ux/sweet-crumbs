@@ -30,7 +30,7 @@ export default function CartPage() {
         <h2 className="font-display text-[40px] font-bold text-brown">Shopping Cart</h2>
         <div className="divider"></div>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 items-start">
         <div className="bg-white border border-border rounded-[18px] overflow-hidden overflow-x-auto">
           <table className="w-full border-collapse min-w-[600px]">
@@ -53,7 +53,7 @@ export default function CartPage() {
                       </div>
                       <div>
                         <div className="font-display text-base font-bold text-dark">{item.name}</div>
-                        <div className="text-xs text-muted">{item.category}</div>
+                        <div className="text-xs text-muted">Bakery Item</div>
                       </div>
                     </div>
                   </td>
@@ -62,14 +62,14 @@ export default function CartPage() {
                   </td>
                   <td className="p-4 border-t border-border align-middle">
                     <div className="flex items-center gap-2">
-                      <button 
+                      <button
                         onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
                         className="bg-warm border border-border w-7 h-7 rounded-full cursor-pointer text-[15px] flex items-center justify-center text-brown transition-colors hover:bg-border"
                       >
                         -
                       </button>
                       <span className="font-semibold min-w-[20px] text-center text-sm">{item.quantity}</span>
-                      <button 
+                      <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
                         className="bg-warm border border-border w-7 h-7 rounded-full cursor-pointer text-[15px] flex items-center justify-center text-brown transition-colors hover:bg-border"
                       >
@@ -81,7 +81,7 @@ export default function CartPage() {
                     ₹{item.price * item.quantity}
                   </td>
                   <td className="p-4 border-t border-border align-middle">
-                    <button 
+                    <button
                       onClick={() => removeItem(item.id)}
                       className="bg-transparent border-none text-red cursor-pointer text-xs font-medium py-1 px-2 rounded-md transition-colors hover:bg-red-bg"
                     >
@@ -93,7 +93,7 @@ export default function CartPage() {
             </tbody>
           </table>
         </div>
-        
+
         <div className="bg-white border border-border rounded-[18px] p-[22px] sticky top-20">
           <h3 className="font-display text-[24px] font-bold text-dark mb-5">Order Summary</h3>
           <div className="flex justify-between text-sm text-muted mb-2.5">
@@ -108,7 +108,7 @@ export default function CartPage() {
             <span>Total</span>
             <span>₹{total}</span>
           </div>
-          
+
           <Link href="/checkout" className="block text-center w-full bg-gradient-to-br from-brown to-accent text-white border-none p-[15px] rounded-full text-[15px] font-semibold cursor-pointer mt-4 transition-all duration-250 tracking-[0.3px] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(124,74,45,0.3)]">
             Checkout Now
           </Link>

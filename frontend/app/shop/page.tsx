@@ -60,8 +60,8 @@ export default function ShopPage() {
             key={cat}
             onClick={() => setActiveCategory(cat)}
             className={`border border-border bg-white py-2 px-5 rounded-full text-[13px] font-medium cursor-pointer transition-all duration-200 ${activeCategory === cat
-                ? 'bg-brown text-white border-brown'
-                : 'text-muted hover:bg-brown hover:text-white hover:border-brown'
+              ? 'bg-brown text-white border-brown'
+              : 'text-muted hover:bg-brown hover:text-white hover:border-brown'
               }`}
           >
             {cat}
@@ -93,7 +93,7 @@ export default function ShopPage() {
                   </div>
                   <div className="text-gold text-xs mb-1.5">
                     {'★'.repeat(Math.floor(product.rating))}
-                    <span className="text-muted text-[11px] ml-1">({product.reviews || 120})</span>
+                    <span className="text-muted text-[11px] ml-1">(120)</span>
                   </div>
                   <div className="text-xs text-muted leading-[1.55] mb-3 min-h-[36px]">
                     {product.description}
@@ -105,8 +105,8 @@ export default function ShopPage() {
                     <button
                       onClick={() => handleAdd(product)}
                       className={`text-white border-none w-[34px] h-[34px] rounded-full text-[20px] flex items-center justify-center cursor-pointer transition-all duration-200 font-light ${isAdded
-                          ? 'bg-green-500 scale-110'
-                          : 'bg-brown hover:bg-accent hover:scale-110'
+                        ? 'bg-green-500 scale-110'
+                        : 'bg-brown hover:bg-accent hover:scale-110'
                         }`}
                     >
                       {isAdded ? '✓' : '+'}
