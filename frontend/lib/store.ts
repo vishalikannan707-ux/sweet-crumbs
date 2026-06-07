@@ -7,6 +7,7 @@ interface CartItem {
   price: number
   quantity: number
   image: string
+  category?: string
 }
 
 interface CartStore {
@@ -93,7 +94,7 @@ export interface Order {
   subtotal: number
   deliveryFee: number
   total: number
-  paymentMethod: 'gpay' | 'cod'
+  paymentMethod: 'gpay' | 'upi' | 'cod'
   address: {
     name: string
     phone: string
