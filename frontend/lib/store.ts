@@ -15,41 +15,35 @@ interface CartStore {
   removeItem: (id: number) => void
   updateQuantity: (id: number, quantity: number) => void
   clearCart: () => void
-  total: number
 }
 
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
-      addItem: (item) =>
-        set((state) => {
-          const existing = state.items.find((i) => i.id === item.id)
-          if (existing) {
-            return {
-              items: state.items.map((i) =>
-                i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
-              ),
-            }
-          }
-          return { items: [...state.items, item] }
-        }),
+      addItem: (item) => {
+        const existing = get().items.find((i) => i.id === item.id)
+        if (existing) {
+          set({
+            items: get().items.map((i) =>
+              i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+            ),
+          })
+        } else {
+          set({ items: [...get().items, item] })
+        }
+      },
       removeItem: (id) =>
-        set((state) => ({
-          items: state.items.filter((i) => i.id !== id),
-        })),
+        set({ items: get().items.filter((i) => i.id !== id) }),
       updateQuantity: (id, quantity) =>
-        set((state) => ({
-          items: state.items.map((i) =>
+        set({
+          items: get().items.map((i) =>
             i.id === id ? { ...i, quantity } : i
           ),
-        })),
+        }),
       clearCart: () => set({ items: [] }),
-      total: 0,
     }),
-    {
-      name: 'cart-storage',
-    }
+    { name: 'cart-storage' }
   )
 )
 
@@ -67,18 +61,13 @@ export const useAuthStore = create<AuthStore>()(
       user: null,
       token: null,
       isAuthenticated: false,
-      setUser: (user, token) =>
-        set({ user, token, isAuthenticated: true }),
-      logout: () =>
-        set({ user: null, token: null, isAuthenticated: false }),
+      setUser: (user, token) => set({ user, token, isAuthenticated: true }),
+      logout: () => set({ user: null, token: null, isAuthenticated: false }),
     }),
-    {
-      name: 'auth-storage',
-    }
+    { name: 'auth-storage' }
   )
 )
 
-// ── Orders store (local, no auth required) ──────────────────────────────────
 export interface OrderItem {
   id: number
   name: string
@@ -93,7 +82,7 @@ export interface Order {
   subtotal: number
   deliveryFee: number
   total: number
-  paymentMethod: 'gpay' | 'upi' | 'cod'
+  paymentMethod: 'gpay' | 'cod'
   address: {
     name: string
     phone: string
@@ -113,7 +102,7 @@ interface OrderStore {
 
 export const useOrderStore = create<OrderStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       orders: [],
       placeOrder: (order) => {
         const id = `ORD${Date.now().toString().slice(-8)}`
@@ -123,13 +112,11 @@ export const useOrderStore = create<OrderStore>()(
           status: 'Confirmed',
           placedAt: new Date().toISOString(),
         }
-        set((state) => ({ orders: [newOrder, ...state.orders] }))
+        set({ orders: [newOrder, ...get().orders] })
         return id
       },
       clearOrders: () => set({ orders: [] }),
     }),
-    {
-      name: 'orders-storage',
-    }
+    { name: 'orders-storage' }
   )
 )

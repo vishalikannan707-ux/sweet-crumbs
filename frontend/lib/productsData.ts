@@ -56,7 +56,7 @@ export const products = [
     price: 4200,
     priceUSD: 50,
     rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1571115764595-644a007f0dad?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=400&fit=crop',
     description: 'Traditional Italian tiramisu with mascarpone and espresso',
   },
   {
@@ -66,7 +66,7 @@ export const products = [
     price: 756,
     priceUSD: 9,
     rating: 4.7,
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&h=400&fit=crop',
     description: 'Crispy almond croissant with almond paste and sliced almonds',
   },
   {
@@ -116,7 +116,7 @@ export const products = [
     price: 714,
     priceUSD: 8.5,
     rating: 4.8,
-    image: 'https://images.unsplash.com/photo-1541123603104-852f7e92d8b8?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1612203985729-70726954388c?w=400&h=400&fit=crop',
     description: 'Elegant chocolate eclair with crispy choux pastry',
   },
 ]

@@ -11,10 +11,16 @@ export const apiClient = axios.create({
 
 // Add token to requests
 apiClient.interceptors.request.use((config) => {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
+  try {
+    const authStorage = typeof window !== 'undefined' ? localStorage.getItem('auth-storage') : null
+    if (authStorage) {
+      const parsed = JSON.parse(authStorage)
+      const token = parsed?.state?.token
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
+    }
+  } catch (e) {}
   return config
 })
 
@@ -23,8 +29,10 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('token')
-      window.location.href = '/login'
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth-storage')
+        window.location.href = '/login'
+      }
     }
     return Promise.reject(error)
   }
